@@ -2,7 +2,7 @@
 source_kind: web
 url: https://github.com/huggingface/huggingface_hub
 retrieved: 2026-10-11T16:05:50+09:00
-licence_note: Apache-2.0 per the README
+licence_note: Apache-2.0 per GitHub (repository licence)
 archive_status: failed
 body_sha256: b8007902cb471c727ea56108f3f0cbb9165ebad9d93e25f0264eed31dbcd0ad3
 read_via: raw
