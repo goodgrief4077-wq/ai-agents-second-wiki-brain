@@ -6,8 +6,8 @@ aliases:
   - earendil-works/pi
 sources:
   - 2026-10-11-github-earendil-works-pi @ README
-updated: 2026-10-11T15:21:00+09:00
-status: draft
+updated: 2026-10-11T15:33:06+09:00
+status: live
 tool_version: 1.1.0
 ---
 A minimal, extensible agent harness (earendil-works/pi, MIT) for coding with LLMs.
