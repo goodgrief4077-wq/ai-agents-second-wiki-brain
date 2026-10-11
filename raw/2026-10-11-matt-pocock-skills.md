@@ -2,7 +2,7 @@
 source_kind: web
 url: https://github.com/mattpocock/skills
 retrieved: 2026-10-11T16:01:21+09:00
-licence_note: MIT per the README and GitHub
+licence_note: MIT per GitHub (repository licence)
 archive_status: saved
 archive_url: http://web.archive.org/web/20261006115300/https://github.com/mattpocock/skills
 archive_timestamp: 2026-10-06T11:53:00+00:00

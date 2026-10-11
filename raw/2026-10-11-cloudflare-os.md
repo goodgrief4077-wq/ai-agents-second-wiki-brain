@@ -2,7 +2,7 @@
 source_kind: web
 url: https://github.com/cloudflare/cloudflare-os
 retrieved: 2026-10-11T16:02:45+09:00
-licence_note: Apache-2.0 per the README
+licence_note: Apache-2.0 per GitHub (repository licence)
 archive_status: saved
 archive_url: http://web.archive.org/web/20261010073144/https://github.com/cloudflare/cloudflare-os
 archive_timestamp: 2026-10-10T07:31:44+00:00
