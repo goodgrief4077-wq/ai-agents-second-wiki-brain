@@ -1,0 +1,12 @@
+Wiki content (wiki/ and raw/) in this repository is licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:         https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "ai-agents-second-wiki-brain" by goodgrief4077-wq, CC BY 4.0.
+
+The code in scripts/ is MIT licensed; see LICENSE.
+
+Sources summarised in raw/ keep their own licences; each raw record carries a
+licence_note. The wiki holds short summaries in its own words, not copies.

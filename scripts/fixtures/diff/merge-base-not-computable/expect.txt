@@ -1,0 +1,4 @@
+exit: 1
+class: unknown
+hard: MERGE_BASE
+base_sha: bogus

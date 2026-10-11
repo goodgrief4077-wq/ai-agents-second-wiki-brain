@@ -1,0 +1,3 @@
+exit: 1
+class: mixed
+hard: MIXED

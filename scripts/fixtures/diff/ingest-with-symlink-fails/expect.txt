@@ -1,0 +1,4 @@
+exit: 1
+class: ingest
+hard: SYMLINK
+symlink: wiki/link.md

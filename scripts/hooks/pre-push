@@ -1,0 +1,10 @@
+#!/bin/sh
+# pre-push: run both lint scripts; fail closed on any non-zero exit (1 HARD, 2 internal).
+# Per-clone: enable with `git config core.hooksPath scripts/hooks`.
+root=$(git rev-parse --show-toplevel) || exit 1
+cd "$root" || exit 1
+if command -v py >/dev/null 2>&1; then PY="py -I"; else PY="python3 -I"; fi
+$PY scripts/lint.py --root . || { echo "pre-push: lint.py failed" >&2; exit 1; }
+base=$(git merge-base origin/main HEAD 2>/dev/null) || { echo "pre-push: no origin/main merge-base (fail closed)" >&2; exit 1; }
+$PY scripts/lint_diff.py --base "$base" --root . || { echo "pre-push: lint_diff.py failed" >&2; exit 1; }
+exit 0
