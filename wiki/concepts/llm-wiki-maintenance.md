@@ -6,8 +6,10 @@ aliases:
 sources:
   - 2026-10-11-glukhov-llm-wiki-maintenance @ A Simple Maintenance Loop
   - 2026-10-11-glukhov-llm-wiki-maintenance @ Types of Drift in an LLM Wiki
+  - 2026-10-11-glukhov-llm-wiki-maintenance @ Source Drift
+  - 2026-10-11-glukhov-llm-wiki-maintenance @ Decision Drift
   - 2026-10-11-glukhov-llm-wiki-maintenance @ What an LLM Wiki Linter Should Check
-updated: 2026-10-11T15:15:20+09:00
+updated: 2026-10-11T15:19:27+09:00
 status: draft
 ---
 How to keep a compiled LLM wiki trustworthy over time. The article's thesis is that such a wiki can look clean while being wrong, so maintenance has to check both structure and meaning. It builds on [[llm-wiki-pattern]].
@@ -23,3 +25,4 @@ Any wiki where an agent rewrites pages across many ingests, so old facts stay pl
 5. Schedule a stale-page review. (src: 2026-10-11-glukhov-llm-wiki-maintenance @ A Simple Maintenance Loop)
 
 ## Disagreements
+None found.
