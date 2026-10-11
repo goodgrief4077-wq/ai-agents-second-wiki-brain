@@ -6,7 +6,7 @@ A small public wiki of AI-agent tools and methods. Raw citation records in `raw/
 - `raw/YYYY-MM-DD-<slug>.md`: one citation record per source. Add-only.
 - `wiki/<section>/<slug>.md`: exactly one folder deep, slug charset `[a-z0-9-]`, slugs unique across ALL sections. Sections: `concepts/` (type method), `entities/` (type tool), `synthesis/` (type synthesis), `archive/` (any type; retired pages). No `wiki/sources/` (`raw/` + `sources:` do that). Nothing else at the `wiki/` root except GENERATED `index.md` (`lint.py --index`, own PR) and `log/` (one file per ingest).
 - Local OS files `Thumbs.db`, `desktop.ini`, `.DS_Store` are git-ignored and skipped by lint (those three names only); any other non-`.md` file under `wiki/` or `raw/` is a HARD error.
-- `scripts/`: `lint.py` (content), `lint_diff.py` (git/PR class), `fetch_record.py` (helper), `templates/`, `hooks/`, `fixtures/`.
+- `scripts/`: `lint.py` (content), `lint_diff.py` (git/PR class), `fetch_record.py` (helper), `check_live.py` (on-demand drift report against live sources and the evidence sheet for a flip PR; network, read-only, prints only), `templates/`, `hooks/`, `fixtures/`.
 - Run scripts with `python3 -I` (Linux) or `py -I` (Windows). Never `pip install`; stdlib only.
 
 ## Rules
@@ -26,7 +26,7 @@ A small public wiki of AI-agent tools and methods. Raw citation records in `raw/
 - Frontmatter: block lists only (`- item`), no inline `[a, b]`. Scalars split on the first `: `. A value or list item containing `: ` or ` #` MUST be quoted. Timestamps ISO with offset (`2026-10-11T10:00:00+09:00`). `status:` and `updated:` lines are written canonically (no quotes, no trailing space).
 - Links: `[[slug]]` wikilinks only, resolved against `wiki/` (not raw, not log). Obsidian setting `useMarkdownLinks=false`; `.obsidian/` is not shared.
 - Raw `source_kind`: web | pdf | book. Hash and Wayback fields come ONLY from `fetch_record.py`; never type them. No copied text; own short summary.
-- Wiki `type`: tool | method | synthesis; the folder must match (tool->entities, method->concepts, synthesis->synthesis, archive takes any). `tool_version` iff `type: tool`. Links stay `[[slug]]`, never with a folder path.
+- Wiki `type`: tool | method | synthesis; the folder must match (tool->entities, method->concepts, synthesis->synthesis, archive takes any). `tool_version` iff `type: tool`; unless it is `hosted-service`, the page also cites a raw record of the project's releases page with locator `releases` (lint WARN `RELEASES_SOURCE`; `unreleased` cites the page that shows no releases). Links stay `[[slug]]`, never with a folder path.
 
 ## Ingest (own clone, never Sir's Obsidian checkout)
 0. `git config core.hooksPath scripts/hooks` and verify it printed.
@@ -37,6 +37,9 @@ A small public wiki of AI-agent tools and methods. Raw citation records in `raw/
 5. `grep -ril "<term>" wiki/`; extend a page before creating; own words; new pages `status: draft`; fill `sources:` locators.
 6. Write `wiki/log/YYYY-MM-DD-<slug>.md` (`## [YYYY-MM-DD] ingest | Title`, raw slugs in backticks, pages touched, commit hash).
 7. `git add <explicit paths>`; `git commit -m "ingest: <slug>"`; run `python3 -I scripts/lint.py --root .` and `python3 -I scripts/lint_diff.py --base $(git merge-base origin/main HEAD) --root .` ONCE; open a PR; Sir merges. Never touch `AGENTS.md` or `scripts/` on an ingest branch.
+
+## Flip PRs
+Before a flip, run `python3 -I scripts/check_live.py --root . --evidence <slug>` (needs `gh`), read the claims beside the source lines, and paste the 5 checked claims into the PR description.
 
 ## Sir's merge-time check
 `git fetch origin; git archive origin/main scripts | tar -x -C <tmp>`, then run main's copies of `lint.py --root .` and `lint_diff.py --base <sha> --root .` (never the PR branch's scripts). Review every flip and every schema PR by reading it.

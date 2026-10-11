@@ -473,6 +473,11 @@ def check_warnings(tree, add, deny_given):
         is_method = fm.get("type") == "method"
         check_instructions(d, is_method, add)
         check_steps(d, is_method, add)
+        srcs = fm.get("sources") if isinstance(fm.get("sources"), list) else []
+        tv = fm.get("tool_version")
+        if fm.get("type") == "tool" and isinstance(tv, str) and tv != "hosted-service"                 and not any(x.partition(" @ ")[2].strip().lower() == "releases" for x in srcs):
+            add(WARN, "RELEASES_SOURCE", d.rel, d.keyline.get("tool_version", 0),
+                "tool_version needs a source with locator 'releases' (or tool_version: hosted-service)")
         if _line_count(d) > MAX_PAGE_LINES:
             add(WARN, "PAGE_LONG", d.rel, 0, "page longer than %d lines (limit comes from pilot data)" % MAX_PAGE_LINES)
         upd = _parse_iso(fm.get("updated", "")) if isinstance(fm.get("updated"), str) else None
