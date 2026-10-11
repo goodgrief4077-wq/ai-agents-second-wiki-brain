@@ -40,6 +40,7 @@ SECRET_RES = (
 ALLOWED_EXAMPLES = ("AKIA" + "IOSFODNN7EXAMPLE", "wJalrXUtnFEMI/K7MDENG/" + "bPxRfiCYEXAMPLEKEY")  # split: secret scanners flag the literal
 
 PAGE_REQUIRED = ("title", "type", "sources", "updated", "status")
+OS_JUNK = ("Thumbs.db", "desktop.ini", ".DS_Store")  # local OS files, git-ignored, skipped by the tree walk
 RESERVED_SLUGS = ("index", "log")  # wiki/index.md and wiki/log/ own these names
 PAGE_TYPES = ("tool", "method", "synthesis")
 SECTIONS = ("concepts", "entities", "synthesis", "archive")  # wiki/<section>/<slug>.md, exactly one level
@@ -143,7 +144,7 @@ class Tree:
             for name in sorted(files):
                 rel = rel_dir + "/" + name
                 if not name.endswith(".md"):
-                    if name != ".gitkeep":
+                    if name != ".gitkeep" and name not in OS_JUNK:
                         self.findings.append(Finding(HARD, "UNEXPECTED_FILE", rel, 0,
                                                      "only lowercase .md files (and .gitkeep) belong under wiki/"))
                     continue
@@ -178,7 +179,7 @@ class Tree:
                     doc = self._load("raw/" + name)
                     if doc is not None:
                         self.raws.append(doc)
-                elif name != ".gitkeep":
+                elif name != ".gitkeep" and name not in OS_JUNK:
                     self.findings.append(Finding(HARD, "UNEXPECTED_FILE", "raw/" + name, 0,
                                                  "only lowercase .md files (and .gitkeep) belong under raw/"))
         self.raw_slugs = {d.rel[4:-3] for d in self.raws}

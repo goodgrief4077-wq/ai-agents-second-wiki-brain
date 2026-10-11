@@ -1,0 +1,2 @@
+exit: 1
+hard: UNEXPECTED_FILE
