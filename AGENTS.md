@@ -5,6 +5,7 @@ A small public wiki of AI-agent tools and methods. Raw citation records in `raw/
 ## Layout
 - `raw/YYYY-MM-DD-<slug>.md`: one citation record per source. Add-only.
 - `wiki/<section>/<slug>.md`: exactly one folder deep, slug charset `[a-z0-9-]`, slugs unique across ALL sections. Sections: `concepts/` (type method), `entities/` (type tool), `synthesis/` (type synthesis), `archive/` (any type; retired pages). No `wiki/sources/` (`raw/` + `sources:` do that). Nothing else at the `wiki/` root except GENERATED `index.md` (`lint.py --index`, own PR) and `log/` (one file per ingest).
+- Local OS files `Thumbs.db`, `desktop.ini`, `.DS_Store` are git-ignored and skipped by lint (those three names only); any other non-`.md` file under `wiki/` or `raw/` is a HARD error.
 - `scripts/`: `lint.py` (content), `lint_diff.py` (git/PR class), `fetch_record.py` (helper), `templates/`, `hooks/`, `fixtures/`.
 - Run scripts with `python3 -I` (Linux) or `py -I` (Windows). Never `pip install`; stdlib only.
 
