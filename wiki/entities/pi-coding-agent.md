@@ -6,7 +6,8 @@ aliases:
   - earendil-works/pi
 sources:
   - 2026-10-11-github-earendil-works-pi @ README
-updated: 2026-10-11T15:33:06+09:00
+  - 2026-10-12-pi-coding-agent-releases @ releases
+updated: 2026-10-12T09:12:05+09:00
 status: live
 tool_version: 1.1.0
 ---

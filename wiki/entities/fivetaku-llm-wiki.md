@@ -5,7 +5,8 @@ aliases:
   - fivetaku/llm-wiki
 sources:
   - 2026-10-11-github-fivetaku-llm-wiki @ README
-updated: 2026-10-11T15:21:00+09:00
+  - 2026-10-12-fivetaku-llm-wiki-releases @ releases
+updated: 2026-10-12T09:10:05+09:00
 status: draft
 tool_version: unreleased
 ---

@@ -7,7 +7,8 @@ aliases:
 sources:
   - 2026-10-11-github-tobi-qmd @ README
   - "2026-10-11-karpathy-llm-wiki-gist @ Optional: CLI tools"
-updated: 2026-10-11T15:33:06+09:00
+  - 2026-10-12-qmd-releases @ releases
+updated: 2026-10-12T09:12:19+09:00
 status: live
 tool_version: 2.8.3
 ---
