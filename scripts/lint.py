@@ -475,7 +475,8 @@ def check_warnings(tree, add, deny_given):
         check_steps(d, is_method, add)
         srcs = fm.get("sources") if isinstance(fm.get("sources"), list) else []
         tv = fm.get("tool_version")
-        if fm.get("type") == "tool" and isinstance(tv, str) and tv != "hosted-service"                 and not any(x.partition(" @ ")[2].strip().lower() == "releases" for x in srcs):
+        has_releases = any(x.partition(" @ ")[2].strip().lower() == "releases" for x in srcs)
+        if fm.get("type") == "tool" and isinstance(tv, str) and tv != "hosted-service" and not has_releases:
             add(WARN, "RELEASES_SOURCE", d.rel, d.keyline.get("tool_version", 0),
                 "tool_version needs a source with locator 'releases' (or tool_version: hosted-service)")
         if _line_count(d) > MAX_PAGE_LINES:
