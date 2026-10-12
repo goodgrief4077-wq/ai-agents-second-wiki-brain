@@ -18,7 +18,7 @@ A local, on-device search engine for markdown notes and documents (tobi/qmd, MIT
 Combines BM25 full-text search, vector search and LLM re-ranking, run locally through node-llama-cpp with GGUF models. Collections can carry context strings that are returned with matching documents. Exposes JSON and file-list output for agents and an MCP server with query, get, multi-get, status and metadata tools.
 
 ## Limits
-Runs local models, so it needs disk and compute. The README documents install through npm or bun. Version taken from the GitHub releases page on 2026-10-12.
+Runs local models, so it needs disk and compute. The README documents install through npm or bun. Version taken from the GitHub releases page on 2026-10-11.
 
 ## Disagreements
 None found.
