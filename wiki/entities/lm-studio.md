@@ -1,10 +1,12 @@
 ---
 title: LM Studio SDK (lmstudio-js)
 type: tool
+aliases:
+  - lmstudio-js
 sources:
   - 2026-10-11-lm-studio @ page
   - 2026-10-12-lm-studio-releases @ releases
-updated: 2026-10-12T09:11:03+09:00
+updated: 2026-10-12T09:26:58+09:00
 status: draft
 tool_version: unreleased
 ---

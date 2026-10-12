@@ -4,7 +4,8 @@ type: tool
 sources:
   - 2026-10-11-blender @ page
   - 2026-10-12-blender-releases @ releases
-updated: 2026-10-12T09:09:10+09:00
+  - 2026-10-12-blender-licence @ LICENSE
+updated: 2026-10-12T09:26:58+09:00
 status: draft
 tool_version: v5.2.2
 ---
@@ -14,7 +15,7 @@ Blender is a free and open source 3D creation suite; this GitHub repository is a
 The README describes Blender as the free and open source 3D creation suite, supporting the entire 3D pipeline: modelling, rigging, animation, simulation, rendering, compositing, motion tracking and video editing. It lists project pages for the main website, reference manual, user community, build instructions, code review and bug tracker, developer forum and developer documentation. It says Blender as a whole is licensed under GPL version 3. The About line of the repository calls it the official mirror of Blender, and the README warns that cloning from the mirror can cause Git LFS errors unless a skip-smudge setting is used for the initial clone.
 
 ## Limits
-tool_version v5.2.2 is the newest tag on the GitHub tags list on 2026-10-12; the mirror has no GitHub releases. The primary development site is not GitHub, and this page does not cover it. This page covers the repository front page and README only.
+tool_version v5.2.2 is the newest tag on the GitHub tags list on 2026-10-12; the mirror has no GitHub releases. The primary development site is not GitHub, and this page does not cover it. This page covers the repository front page and README only. The repository's COPYING file says Blender uses the GNU General Public License and is not available under other licences.
 
 ## Disagreements
 None found.
