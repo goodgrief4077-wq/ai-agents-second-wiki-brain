@@ -7,7 +7,8 @@ aliases:
 sources:
   - 2026-10-11-github-tobi-qmd @ README
   - "2026-10-11-karpathy-llm-wiki-gist @ Optional: CLI tools"
-updated: 2026-10-11T15:33:06+09:00
+  - 2026-10-12-qmd-releases @ releases
+updated: 2026-10-12T09:12:19+09:00
 status: live
 tool_version: 2.8.3
 ---
@@ -17,7 +18,7 @@ A local, on-device search engine for markdown notes and documents (tobi/qmd, MIT
 Combines BM25 full-text search, vector search and LLM re-ranking, run locally through node-llama-cpp with GGUF models. Collections can carry context strings that are returned with matching documents. Exposes JSON and file-list output for agents and an MCP server with query, get, multi-get, status and metadata tools.
 
 ## Limits
-Runs local models, so it needs disk and compute. The README documents install through npm or bun. Version taken from the GitHub releases page on 2026-10-11.
+Runs local models, so it needs disk and compute. The README documents install through npm or bun. Version taken from the GitHub releases page on 2026-10-12.
 
 ## Disagreements
 None found.
