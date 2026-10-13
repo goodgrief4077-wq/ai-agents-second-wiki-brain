@@ -23,7 +23,7 @@ A GitHub repo (`owner/repo`) or an installed plugin id (`name@marketplace`), plu
 6. **Toggle rule.** Append a dated section to `~/.claude/CLAUDE.md` (append, never overwrite): `"<word> on"` = `claude plugin enable <id>`, `"<word> off"` = `claude plugin disable <id>`, then `/reload-plugins` or a new session. Include id, version, skill/agent/command counts, and the model rule from step 4.
 7. **Memory.** Add the stack to `project_plugin-toggles-pstack-addy-matt.md` in the project memory dir (update, do not duplicate) and keep one line in `MEMORY.md`.
 8. **Verify live.** `claude plugin list` shows the id with the intended Status; the model sheet validates if there is one; the CLAUDE.md section exists (grep once). Report what was verified and what was only read from files, not run.
-9. **Guide.** Add a section to the Skill-Plugins How-To note in the notes vault (`<notes-vault>/AI-Agents\Skills\`; find it first, create it there only if absent): toggle phrase, command, skills and commands list verified from the installed plugin's own files (for Claude Code, `.claude/commands/*.md`, not Gemini `.toml`), model rule, warnings.
+9. **Guide.** Add a section to the Skill-Plugins How-To note in the notes vault (`<notes-vault>/<skills-howto-folder>/`; find it first, create it there only if absent): toggle phrase, command, skills and commands list verified from the installed plugin's own files (for Claude Code, `.claude/commands/*.md`, not Gemini `.toml`), model rule, warnings.
 10. **Report to the user** in this shape: what it is; safety (hooks, network); state now; models (enforced or by rule); not tested live; what is left for the user.
 
 ## Rules
