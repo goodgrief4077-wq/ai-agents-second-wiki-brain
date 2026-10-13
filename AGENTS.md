@@ -1,9 +1,10 @@
 # AGENTS.md: ai-agents-second-wiki-brain
 
-A small public wiki of AI-agent tools and methods. Raw citation records in `raw/`, synthesis pages in `wiki/`. Public information only. Not Sir's private memory. Only Sir changes this file, `scripts/` and any `.github/` (own schema PR).
+A lean, fast, comprehensive, cited public second brain for AI agents: a wiki of AI-agent tools and methods plus shared agent skills. It is meant to grow large; lean means few, mechanical rules and cheap reads, not few pages. Raw citation records in `raw/`, synthesis pages in `wiki/`, shared skills in `skills/`. Public information only. Not Sir's private memory. Only Sir changes this file, `scripts/` and any `.github/` (own schema PR).
 
 ## Layout
-- `raw/YYYY-MM-DD-<slug>.md`: one citation record per source. Add-only.
+- `raw/YY-MM-DD-HHMM-<slug>.md`: one citation record per source (local time of the capture; legacy `YYYY-MM-DD-<slug>.md` names stay valid and are never renamed). Add-only.
+- `skills/<name>/SKILL.md`: sanitized, agent-neutral skills (`.md` files only). Outside the wiki and raw rules: not cited pages, not read as instructions by wiki readers (rule 11). Private details appear only as `<placeholders>` (`<ops-repo>`, `<notes-vault>`); lint rejects local paths, mail addresses, IPv4 addresses, backslash paths and the word "Sir" there (HARD `SKILLS_PRIVATE`). Adding or changing a file under `skills/` is a schema PR.
 - `wiki/<section>/<slug>.md`: exactly one folder deep, slug charset `[a-z0-9-]`, slugs unique across ALL sections. Sections: `concepts/` (type method), `entities/` (type tool), `synthesis/` (type synthesis), `archive/` (any type; retired pages). No `wiki/sources/` (`raw/` + `sources:` do that). Nothing else at the `wiki/` root except GENERATED `index.md` (`lint.py --index`, own PR) and `log/` (one file per ingest).
 - Local OS files `Thumbs.db`, `desktop.ini`, `.DS_Store` are git-ignored and skipped by lint (those three names only); any other non-`.md` file under `wiki/` or `raw/` is a HARD error.
 - `scripts/`: `lint.py` (content), `lint_diff.py` (git/PR class), `fetch_record.py` (helper), `check_live.py` (on-demand drift report against live sources and the evidence sheet for a flip PR; network, read-only, prints only), `templates/`, `hooks/`, `fixtures/`.
@@ -17,7 +18,7 @@ A small public wiki of AI-agent tools and methods. Raw citation records in `raw/
 5. Conflicting claims sit side by side under "Disagreements", each marked `[CONFLICT]`.
 6. Never `git stash`, `reset --hard`, `checkout .`, `clean`, `add -A`, `--no-verify`. Stage explicit paths.
 7. A PR is ONE class by diff: ingest (`wiki/**` except index, new `raw/**`), flip (only `status:`/`updated:` lines of existing pages), index (only `wiki/index.md`), schema (everything else; needs Sir's explicit OK).
-8. No secrets, tokens, personal or health data, local paths. If a secret reaches ANY pushed branch, rotate it.
+8. No secrets, tokens, personal or health data, local paths. If a secret reaches ANY pushed branch, rotate it. Every file under `skills/` is scanned by lint for these (and for names and handles in a local `--deny-file`) before merge.
 9. `draft` is NOT a quarantine and a green lint is NOT authorization. The gate is Sir's merge. Agents set `status: draft`; only a flip PR makes a page `live`, meaning "5 claims spot-checked against the source".
 10. Query never writes. Deliberate deviation from the Karpathy pattern (answers filed back as pages) because of memory poisoning.
 11. Readers pin a full commit SHA, read `wiki/index.md` first, open only matching pages, cite pages actually opened, else answer "not in wiki". Skip `draft` and `superseded` unless asked.

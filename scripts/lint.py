@@ -20,7 +20,17 @@ HARD, WARN, INFO = "HARD", "WARN", "INFO"
 _ORDER = {HARD: 0, WARN: 1, INFO: 2}
 
 SLUG_RE = re.compile(r"^[a-z0-9-]+$")
-RAW_NAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9-]+$")
+# Legacy YYYY-MM-DD-<slug> stays valid; new records use YY-MM-DD-HHMM-<slug>.
+RAW_NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}|\d{2}-\d{2}-\d{2}-\d{4})-[a-z0-9-]+$")
+RAW_NEW_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{2})-(\d{4})-")
+# skills/**: sanitized, agent-neutral copies; only <placeholder> forms may stand for private details.
+SKILL_PRIVATE_RES = (
+    ("local path", re.compile(r"(?<![A-Za-z])[A-Za-z]:[\\/]|/home/|/Users/")),
+    ("mail address", re.compile(r"[A-Za-z0-9._+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}")),
+    ("IPv4 address", re.compile(r"(?<![\d.])\d{1,3}(\.\d{1,3}){3}(?![\d.])")),
+    ("owner title", re.compile(r"\bSir\b")),
+    ("backslash path", re.compile(r"[A-Za-z0-9_>]\\[A-Za-z0-9_<]")),
+)
 _ISO = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?([+-]\d{2}:\d{2}|Z)"
 ISO_RE = re.compile("^" + _ISO + "$")
 STATUS_LINE_RE = re.compile(r"^status: (draft|live|superseded)$")
@@ -298,7 +308,7 @@ def check_links(doc, targets, add):
 def check_raw(doc, add):
     rel = doc.rel
     if not RAW_NAME_RE.match(stem(rel)):
-        add(HARD, "RAW_NAME", rel, 0, "raw filename must be YYYY-MM-DD-<slug>.md")
+        add(HARD, "RAW_NAME", rel, 0, "raw filename must be YY-MM-DD-HHMM-<slug>.md (legacy YYYY-MM-DD-<slug>.md stays valid)")
     if doc.fm is None:
         add(HARD, "FM_MISSING", rel, 1, "no frontmatter")
         return
@@ -345,9 +355,41 @@ def check_duplicates(tree, add):
                 add(HARD, "DUP_BASENAME", paths[1], 0, "duplicate basename in " + label + "/: " + ", ".join(paths))
 
 
+def skill_docs(root):
+    """Every .md file under skills/ as a Doc (non-.md files are flagged by check_skills)."""
+    out = []
+    base = os.path.join(root, "skills")
+    for dirpath, dirs, files in os.walk(base):
+        dirs.sort()
+        for name in sorted(files):
+            if not name.endswith(".md"):
+                continue
+            text = read_text(os.path.join(dirpath, name))
+            if text is not None:
+                out.append(Doc(os.path.relpath(os.path.join(dirpath, name), root).replace(os.sep, "/"), text))
+    return out
+
+
+def check_skills(root, add):
+    """skills/ is outside the wiki/raw rules but public: markdown only, no private detail."""
+    base = os.path.join(root, "skills")
+    for dirpath, dirs, files in os.walk(base):
+        dirs.sort()
+        for name in sorted(files):
+            if not name.endswith(".md"):
+                rel = os.path.relpath(os.path.join(dirpath, name), root).replace(os.sep, "/")
+                add(HARD, "SKILLS_FILE", rel, 0, "only .md files belong under skills/")
+    for d in skill_docs(root):
+        for i, ln in enumerate(d.lines):
+            for kind, rx in SKILL_PRIVATE_RES:
+                if rx.search(ln):
+                    add(HARD, "SKILLS_PRIVATE", d.rel, i + 1,
+                        kind + " in skills/ (use a <placeholder>; value not printed)")
+
+
 def scan_files(tree):
-    """Docs scanned for secrets and deny keywords: wiki/, raw/ and AGENTS.md."""
-    docs = tree.pages + tree.logs + tree.raws
+    """Docs scanned for secrets and deny keywords: wiki/, raw/, skills/ and AGENTS.md."""
+    docs = tree.pages + tree.logs + tree.raws + skill_docs(tree.root)
     for rel in ("wiki/index.md", "AGENTS.md"):
         text = read_text(os.path.join(tree.root, rel))
         if text is not None:
@@ -505,8 +547,14 @@ def check_warnings(tree, add, deny_given):
                 add(WARN, "RAW_WIKILINK", d.rel, n, "wikilink in a raw record body")
         ret = fm.get("retrieved") if isinstance(fm.get("retrieved"), str) else None
         if ret:
-            if os.path.basename(d.rel)[:10] != ret[:10]:
-                add(WARN, "RAW_DATE_MISMATCH", d.rel, 0, "filename date differs from retrieved date")
+            base = os.path.basename(d.rel)
+            m = RAW_NEW_RE.match(base)
+            if m:
+                name_date, name_hm = "20%s-%s-%s" % m.group(1, 2, 3), m.group(4)
+            else:
+                name_date, name_hm = base[:10], None
+            if name_date != ret[:10] or (name_hm is not None and ret[11:13] + ret[14:16] != name_hm):
+                add(WARN, "RAW_DATE_MISMATCH", d.rel, 0, "filename date or time differs from retrieved")
             r = _parse_iso(ret)
             if r is not None and r > now:
                 add(WARN, "DATE_FUTURE", d.rel, d.keyline.get("retrieved", 0), "retrieved is in the future")
@@ -518,7 +566,7 @@ def check_warnings(tree, add, deny_given):
     if idx != build_index(tree) and (tree.pages or idx is not None):
         add(INFO, "INDEX_STALE", "wiki/index.md", 0, "index differs from generated output (never fails)")
     if not deny_given:
-        add(WARN, "DENY_SKIPPED", "-", 0, "deny check skipped (no --deny-file)")
+        add(WARN, "DENY_SKIPPED", "-", 0, "no local deny file given: personal names and handles are not checked (pass --deny-file)")
 
 
 _ESC_DROP = set("[]()<>!|`" + chr(92))
@@ -584,6 +632,7 @@ def run_checks(root, deny_file=None):
     for d in tree.raws:
         check_raw(d, add)
     check_duplicates(tree, add)
+    check_skills(tree.root, add)
     docs = scan_files(tree)
     for d in docs:
         check_secrets(d, add)

@@ -1,6 +1,6 @@
 # ai-agents-second-wiki-brain
 
-A small public wiki of AI-agent tools and methods, written so that people and agents can both read it and check it.
+A lean, fast, comprehensive, cited public second brain for AI agents: a growing wiki of AI-agent tools and methods plus shared agent skills, written so that people and agents can both read it and check it.
 
 Each page summarizes one tool or method in short, plain prose. Each claim on a page points to a raw citation record, and each raw record keeps the source URL, the retrieval date, the licence note, a content hash, and a web archive link. A reader can follow any claim back to the source it came from.
 
