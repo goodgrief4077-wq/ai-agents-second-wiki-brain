@@ -24,7 +24,7 @@ A GitHub repo (`owner/repo`) or an installed plugin id (`name@marketplace`), plu
 7. **Memory.** Add the stack to `project_plugin-toggles-pstack-addy-matt.md` in the project memory dir (update, do not duplicate) and keep one line in `MEMORY.md`.
 8. **Verify live.** `claude plugin list` shows the id with the intended Status; the model sheet validates if there is one; the CLAUDE.md section exists (grep once). Report what was verified and what was only read from files, not run.
 9. **Guide.** Add a section to the Skill-Plugins How-To note in the notes vault (`<notes-vault>/AI-Agents\Skills\`; find it first, create it there only if absent): toggle phrase, command, skills and commands list verified from the installed plugin's own files (for Claude Code, `.claude/commands/*.md`, not Gemini `.toml`), model rule, warnings.
-10. **Report to the user** in this shape: what it is; safety (hooks, network); state now; models (enforced or by rule); not tested live; what is left for him.
+10. **Report to the user** in this shape: what it is; safety (hooks, network); state now; models (enforced or by rule); not tested live; what is left for the user.
 
 ## Rules
 - Do not start the stack's own setup skill (`ce-setup`, `setup-pstack`) unless the user asks; they ask many questions and edit config.

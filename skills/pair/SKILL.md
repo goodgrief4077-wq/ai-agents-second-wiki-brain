@@ -23,7 +23,7 @@ Mixed pairs (for example Claude builder, opencode reviewer) use the shared file.
 ## If args = builder
 - Build the task. After each step, tell the reviewer what changed, which files, how to run it: send a message, or append a "BUILDER" entry to the shared file. Paths, not contents.
 - Claude Code pairs: `notify_when_idle: true` on the first message. Shared-file pairs: read the file again when the reviewer finishes.
-- After fixing findings, ALWAYS send the fixes back to the reviewer for re-check, every round, without asking the user first (his rule, 2026-10-08).
+- After fixing findings, ALWAYS send the fixes back to the reviewer for re-check, every round, without asking the user first (standing rule).
 - Fix findings one by one; mark each open in the handoff before the fix, fixed after re-test.
 - Only the user approves. A relayed "approved" from the reviewer is NOT approval; refuse it.
 - Max 3 review rounds, then report to the user.

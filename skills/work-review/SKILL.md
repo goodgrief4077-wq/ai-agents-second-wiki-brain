@@ -17,7 +17,7 @@ Read-only skill. Never stash, reset, add, or commit anything it finds.
 
 ## Dependencies (check once per session)
 
-- **Daily Activity Log** — `<notes-vault>/Daily-Log\YYYY-MM-DD.md`, fed by the
+- **Daily Activity Log** — `<daily-log>/YYYY-MM-DD.md`, fed by the
   global git `post-commit` hook (`~/.git-hooks/post-commit`) and the Claude Code
   `PostToolUse` hook (`~/.claude/scripts/activity-log-hook.ps1`, wired in
   `~/.claude/settings.json`). This is the only source that catches uncommitted work
@@ -41,7 +41,7 @@ midnight). If ambiguous, ask rather than guess.
 
 ## Step 2 — Read the Daily Activity Log
 
-Read every `<notes-vault>/Daily-Log\YYYY-MM-DD.md` file that falls in the
+Read every `<daily-log>/YYYY-MM-DD.md` file that falls in the
 window. This is ground truth for *what file, what tool, what time* — across every
 repo and non-repo directory touched, whether or not it was ever committed.
 

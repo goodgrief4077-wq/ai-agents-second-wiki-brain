@@ -18,7 +18,7 @@ Adapted from Matt Pocock's `handoff` (github.com/mattpocock/skills, 2026-10-06 v
 
 ## Mode A: durable (session end, "before I clear", hook demand)
 Use when the work continues later in time. Records live in git. Steps:
-1. Write `<ops-repo>/docs/handoffs/HANDOFF-YYYY-MM-DD-HHMM-<topic>.md` (Asia/Seoul time). Sections: Goal, Done (verified, with pointers), In progress, Exact next steps, Gotchas, Open decisions for the user, Suggested skills, Verify before acting, Pointers.
+1. Write `<ops-repo>/docs/handoffs/HANDOFF-YYYY-MM-DD-HHMM-<topic>.md` (local time of the user). Sections: Goal, Done (verified, with pointers), In progress, Exact next steps, Gotchas, Open decisions for the user, Suggested skills, Verify before acting, Pointers.
 2. Prior handoff on the same work: re-check it against what happened since (PRs merged, decisions, deferrals). Do not edit its history. Mark it SUPERSEDED in INDEX if the new file replaces it.
 3. **Fold rule.** If the file you are updating already has 3 or more stacked UPDATE sections, prepend a dated `## Current state` block at the TOP that supersedes them (prepend only), and leave every dated section below it untouched (append-only; nothing is deleted or rewritten).
 4. Add the INDEX row in `<ops-repo>/docs/handoffs/INDEX.md` (status OPEN, DONE, BLOCKED or SUPERSEDED; same columns as existing rows).
