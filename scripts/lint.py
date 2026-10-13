@@ -22,7 +22,7 @@ _ORDER = {HARD: 0, WARN: 1, INFO: 2}
 SLUG_RE = re.compile(r"^[a-z0-9-]+$")
 # Legacy YYYY-MM-DD-<slug> stays valid; new records use YY-MM-DD-HHMM-<slug>.
 RAW_NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}|\d{2}-\d{2}-\d{2}-([01]\d|2[0-3])[0-5]\d)-[a-z0-9-]+$")
-SKILL_PATH_RE = re.compile(r"^skills/[a-z0-9-]+/SKILL\.md$")
+SKILL_PATH_RE = re.compile(r"^skills/[a-z0-9-]+/(SKILL|[a-z0-9.-]+)\.md$")
 RAW_NEW_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{2})-(\d{4})-")
 # skills/**: sanitized, agent-neutral copies; only <placeholder> forms may stand for private details.
 SKILL_PRIVATE_RES = (
@@ -380,7 +380,7 @@ def check_skills(root, add):
         for name in sorted(files):
             rel = os.path.relpath(os.path.join(dirpath, name), root).replace(os.sep, "/")
             if rel != "skills/README.md" and not SKILL_PATH_RE.match(rel):
-                add(HARD, "SKILLS_FILE", rel, 0, "only skills/README.md and skills/<name>/SKILL.md (name [a-z0-9-]) belong under skills/")
+                add(HARD, "SKILLS_FILE", rel, 0, "only skills/README.md, skills/<name>/SKILL.md and one level of lowercase skills/<name>/<file>.md belong under skills/")
     for d in skill_docs(root):
         for i, ln in enumerate(d.lines):
             for kind, rx in SKILL_PRIVATE_RES:

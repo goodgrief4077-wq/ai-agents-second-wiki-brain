@@ -41,4 +41,4 @@ Use when the work moves sideways to another session now, not later. Never commit
 ## Any agent
 - Written for every agent (Claude Code, opencode, pi, omp, Codex, hermes). No skill tool: read this file and follow it. No hook: write the handoff when the user asks or when you judge context is heavy.
 - Every step is plain shell plus `git` and `gh`; Claude-only items (the context hook, a skill loader) are triggers, not requirements.
-- Agents without their own todo or skill list: take names for "Suggested skills" from `~/.agents/skills/` and `~/.claude/skills-parked/INDEX.md`.
+- Agents without their own todo or skill list: take names for "Suggested skills" from `~/.agents/skills/` and `<parked-index>`.

@@ -18,8 +18,8 @@ Read-only skill. Never stash, reset, add, or commit anything it finds.
 ## Dependencies (check once per session)
 
 - **Daily Activity Log** — `<daily-log>/YYYY-MM-DD.md`, fed by the
-  global git `post-commit` hook (`~/.git-hooks/post-commit`) and the Claude Code
-  `PostToolUse` hook (`~/.claude/scripts/activity-log-hook.ps1`, wired in
+  global git `post-commit` hook (`<git-hooks-dir>/post-commit`) and the Claude Code
+  `PostToolUse` hook (`<activity-log-hook>`, wired in
   `~/.claude/settings.json`). This is the only source that catches uncommitted work
   and non-git files. If either hook file is missing, say so explicitly and fall back
   to git log only for that window — do not silently under-report.

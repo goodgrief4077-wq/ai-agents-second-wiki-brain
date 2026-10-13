@@ -16,7 +16,7 @@ A GitHub repo (`owner/repo`) or an installed plugin id (`name@marketplace`), plu
 2. **Inspect read-only before install.** `gh repo view`, then `gh api repos/<r>/contents/.claude-plugin` and `.../git/trees/HEAD?recursive=1`. Record: version, licence, last push, skills / agents / commands count, whether a hooks file exists, which events it hooks, any `curl`/`wget`/`eval`/write-outside-cache in hook scripts, and any session-start "mandate" that forces itself on every session. Stop and tell the user if a hook runs automatically with network or writes outside its cache.
 3. **Install at user scope.** `claude plugin marketplace add <owner/repo>` then `claude plugin install <plugin>@<marketplace>`. Skip what already exists.
 4. **Model rules.** Main work Sonnet 5.5, subagents Haiku 5.5 only, never Opus or Fable; heavy fan-out goes to opencode free. Find where models are set:
-   - A model sheet or config (pstack: `~/.claude/pstack-models.md`, validate with its `check-sheet.sh`; a `panel vendors: any` line is needed for single-vendor panels). Write it and wire its `@` include into `~/.claude/CLAUDE.md`.
+   - A model sheet or config (pstack: `<model-sheet>`, validate with its `check-sheet.sh`; a `panel vendors: any` line is needed for single-vendor panels). Write it and wire its `@` include into `~/.claude/CLAUDE.md`.
    - Agent frontmatter `model:` is inside the plugin cache and is overwritten on update: do not edit it. Say so, and record the rule in CLAUDE.md instead.
    - No model setting at all: say plainly that it is a rule I follow, not enforced.
 5. **Park by default.** `claude plugin disable <id>`, unless the user says leave it on. This keeps the 12-active-skills rule.
@@ -34,6 +34,6 @@ A GitHub repo (`owner/repo`) or an installed plugin id (`name@marketplace`), plu
 
 ## Other agents (opencode, pi, omp, Codex, hermes)
 - The `claude plugin ...` steps are the Claude Code installer; they only manage Claude Code plugins. The goal itself (inspect, install parked, safe, switchable, verified, documented) applies to every agent.
-- For another agent: take the stack's skill folders (plain `SKILL.md` directories) into `~/.agents/skills/<name>/` or the parked shelf `~/.agents/skill-shelf/`, link with a PowerShell junction, and keep them out of the active set by default.
+- For another agent: take the stack's skill folders (plain `SKILL.md` directories) into `~/.agents/skills/<name>/` or the parked shelf `<skill-shelf>/`, link with a PowerShell junction, and keep them out of the active set by default.
 - Hooks, model sheets and `/reload-plugins` are agent-specific: record which agent each applies to in the how-to guide, and verify with that agent's own list or config command.
 - Toggle words ("pstack on") then map to whatever the agent uses (move or junction the skill folders in or out of the active folder).
