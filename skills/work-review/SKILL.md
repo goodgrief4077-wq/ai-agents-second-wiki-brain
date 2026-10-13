@@ -1,11 +1,11 @@
 ---
 name: work-review
-description: Cross-repo, cross-project review of actual work done — "review what we did", "review today", "what did we do this week", "work review", "session review". Reads the Daily Activity Log plus git state across every local repo, groups results under the owner's active-project table (G0-G5), flags uncommitted/unshipped work, and offers deep-dive review (compound-engineering:ce-code-review, compound-engineering:ce-doc-review, gstack /retro) only on request. Distinct from single-repo PR/commit review tools, which assume one repo and miss the multi-repo, non-code work that makes up most of a day here.
+description: Cross-repo, cross-project review of actual work done — "review what we did", "review today", "what did we do this week", "work review", "session review". Reads the Daily Activity Log plus git state across every local repo, groups results under the user's active-project list, flags uncommitted/unshipped work, and offers deep-dive review (compound-engineering:ce-code-review, compound-engineering:ce-doc-review, gstack /retro) only on request. Distinct from single-repo PR/commit review tools, which assume one repo and miss the multi-repo, non-code work that makes up most of a day here.
 ---
 
 # Work Review
 
-the owner's actual unit of work is not one git repo — it spans <ops-repo>,
+The user's actual unit of work is not one git repo — it spans <ops-repo>,
 several repos, Obsidian vaults, reference managers, PDFs, `.claude` skills/memory, and
 non-git scratch dirs, often several in one day. `/retro`, `ce-code-review`, and
 `ce-doc-review` all assume a single repo with committed changes or a PR. This skill
@@ -111,7 +111,7 @@ decision, not just file churn, and is easy to miss inside a long Daily Log.
 
 ## Step 6 — Build the report
 
-Group findings under the owner's active-project list (keep one in your own notes; mark active versus on hold), plus an "Infra/tooling"
+Group findings under the user's active-project list (keep one in your own notes; mark active versus on hold), plus an "Infra/tooling"
 bucket for `.claude/`, `CLAUDE.md`, and scripts work. For each group, state: what
 shipped (committed), what's in progress (uncommitted), what got decided (memory).
 

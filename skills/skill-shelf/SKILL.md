@@ -1,6 +1,6 @@
 ---
 name: skill-shelf
-description: Use when the owner says "don't we have a skill for this", "is there a skill", "use a skill", or the task may match a specialised skill, or when asked "is there a skill for X" / "use a skill". Skills are stored on a shelf and are NOT auto-loaded; this finds and loads the one needed. Works with any agent.
+description: Use when the user says "don't we have a skill for this", "is there a skill", "use a skill", or the task may match a specialised skill, or when asked "is there a skill for X" / "use a skill". Skills are stored on a shelf and are NOT auto-loaded; this finds and loads the one needed. Works with any agent.
 ---
 
 # Skill shelf (any agent)
