@@ -22,8 +22,8 @@ sources:
   - 2026-10-13-webdev-simplified-ai-skills @ 22:18
   - 2026-10-13-webdev-simplified-ai-skills @ 22:34
   - 2026-10-13-webdev-simplified-ai-skills @ 26:58
-updated: 2026-10-13T11:34:00+09:00
-status: draft
+updated: 2026-10-13T12:07:00+09:00
+status: live
 ---
 How to write and maintain an agent skill, as taught in one developer's video guide. A skill is a markdown file with a name and description in front matter; its body is loaded into the agent's context when the skill is invoked or auto-selected. The video argues that quality comes from your hands-on knowledge, a small body, and refining the skill over time, not from downloading many skills. Related: [[matt-pocock-skills]], [[claude-code]], [[pi-coding-agent]].
 
