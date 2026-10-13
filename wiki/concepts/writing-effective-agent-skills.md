@@ -8,6 +8,7 @@ sources:
   - 2026-10-13-webdev-simplified-ai-skills @ 00:57
   - 2026-10-13-webdev-simplified-ai-skills @ 02:17
   - 2026-10-13-webdev-simplified-ai-skills @ 04:19
+  - 2026-10-13-webdev-simplified-ai-skills @ 06:03
   - 2026-10-13-webdev-simplified-ai-skills @ 06:59
   - 2026-10-13-webdev-simplified-ai-skills @ 07:11
   - 2026-10-13-webdev-simplified-ai-skills @ 09:44
@@ -16,19 +17,24 @@ sources:
   - 2026-10-13-webdev-simplified-ai-skills @ 13:01
   - 2026-10-13-webdev-simplified-ai-skills @ 16:22
   - 2026-10-13-webdev-simplified-ai-skills @ 18:02
+  - 2026-10-13-webdev-simplified-ai-skills @ 18:07
+  - 2026-10-13-webdev-simplified-ai-skills @ 19:03
+  - 2026-10-13-webdev-simplified-ai-skills @ 19:16
+  - 2026-10-13-webdev-simplified-ai-skills @ 19:42
   - 2026-10-13-webdev-simplified-ai-skills @ 20:27
   - 2026-10-13-webdev-simplified-ai-skills @ 21:41
   - 2026-10-13-webdev-simplified-ai-skills @ 22:07
   - 2026-10-13-webdev-simplified-ai-skills @ 22:18
   - 2026-10-13-webdev-simplified-ai-skills @ 22:34
+  - 2026-10-13-webdev-simplified-ai-skills @ 26:33
   - 2026-10-13-webdev-simplified-ai-skills @ 26:58
-updated: 2026-10-13T12:07:00+09:00
+updated: 2026-10-13T14:25:00+09:00
 status: live
 ---
 How to write and maintain an agent skill, as taught in one developer's video guide. A skill is a markdown file with a name and description in front matter; its body is loaded into the agent's context when the skill is invoked or auto-selected. The video argues that quality comes from your hands-on knowledge, a small body, and refining the skill over time, not from downloading many skills. Related: [[matt-pocock-skills]], [[claude-code]], [[pi-coding-agent]].
 
 ## When it applies
-Any coding agent or editor that loads skills from a folder, when the agent keeps doing a task in a generic or wrong way and you want it to follow your own conventions. Also when judging a third-party skill before installing it.
+Coding agents and editors that load skills from a folder (the video says most follow a shared agents/skills folder convention, and some do not), when the agent keeps doing a task in a generic or wrong way and you want it to follow your own conventions. Also when judging a third-party skill before installing it.
 
 ## Steps
 1. Know the format: a markdown file whose front matter requires a name and a description; everything else is optional. (src: 2026-10-13-webdev-simplified-ai-skills @ 00:57)
@@ -41,12 +47,17 @@ Any coding agent or editor that loads skills from a folder, when the agent keeps
 8. Optionally limit what a skill may do with the allowed-tools field (marked experimental in the specification). (src: 2026-10-13-webdev-simplified-ai-skills @ 11:27)
 9. Put runnable code in a scripts folder so the agent gets a known input and output instead of prose instructions. (src: 2026-10-13-webdev-simplified-ai-skills @ 13:01)
 10. Keep the main file under about 500 lines and move detail into separate reference files linked from it, one level deep. (src: 2026-10-13-webdev-simplified-ai-skills @ 16:22)
-11. Write the description around the user's intent and when to use the skill, not around what the tool is; say when not to use it too. (src: 2026-10-13-webdev-simplified-ai-skills @ 18:02)
-12. Base the content on your own hands-on experience and real documents or examples. (src: 2026-10-13-webdev-simplified-ai-skills @ 20:27)
-13. Include only what the agent does not already know. (src: 2026-10-13-webdev-simplified-ai-skills @ 21:41)
-14. Add a section of what to do and what not to do. (src: 2026-10-13-webdev-simplified-ai-skills @ 22:07)
-15. Provide templates for formatted output, and checklists or validation loops for multi-step tasks. (src: 2026-10-13-webdev-simplified-ai-skills @ 22:18)
-16. Refine over time: save the agent's first output next to your corrected version, then have a second skill compare them and fold the lasting differences back in for you to review. (src: 2026-10-13-webdev-simplified-ai-skills @ 26:58)
+11. Write the description around the user's intent and when to use the skill, not around what the tool is. (src: 2026-10-13-webdev-simplified-ai-skills @ 18:02)
+12. Use imperative phrasing in the description. (src: 2026-10-13-webdev-simplified-ai-skills @ 18:07)
+13. State in the description when the skill should not be used, with an example of the excluded case. (src: 2026-10-13-webdev-simplified-ai-skills @ 19:42)
+14. Keep the description under the 1024-character limit and as small as practical. (src: 2026-10-13-webdev-simplified-ai-skills @ 19:03)
+15. Remember that every skill's name and description is loaded on every request, so long descriptions cost context. (src: 2026-10-13-webdev-simplified-ai-skills @ 19:16)
+16. Base the content on your own hands-on experience and real documents or examples. (src: 2026-10-13-webdev-simplified-ai-skills @ 20:27)
+17. Include only what the agent does not already know. (src: 2026-10-13-webdev-simplified-ai-skills @ 21:41)
+18. Add a section of what to do and what not to do. (src: 2026-10-13-webdev-simplified-ai-skills @ 22:07)
+19. The what-not-to-do section is where new rules are added first, and it is the part changed most while refining. (src: 2026-10-13-webdev-simplified-ai-skills @ 26:33)
+20. Provide templates for formatted output, and checklists or validation loops for multi-step tasks. (src: 2026-10-13-webdev-simplified-ai-skills @ 22:18)
+21. Refine over time: save the agent's first output next to your corrected version, then have a second skill compare them and fold the lasting differences back in for you to review. (src: 2026-10-13-webdev-simplified-ai-skills @ 26:58)
 
 ## Disagreements
 None found.
