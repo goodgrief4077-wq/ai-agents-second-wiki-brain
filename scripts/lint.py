@@ -27,9 +27,10 @@ RAW_NEW_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{2})-(\d{4})-")
 SKILL_PRIVATE_RES = (
     ("local path", re.compile(r"(?<![A-Za-z])[A-Za-z]:[\\/]|/home/|/Users/")),
     ("mail address", re.compile(r"[A-Za-z0-9._+-]+@[A-Za-z0-9-]+\.[A-Za-z]{2,}")),
-    ("IPv4 address", re.compile(r"(?<![\d.])\d{1,3}(\.\d{1,3}){3}(?![\d.])")),
+    ("IPv4 address or 4-part version (write v1.2.3.4 as 1.2.3)", re.compile(r"(?<![\d.])\d{1,3}(\.\d{1,3}){3}(?![\d.])")),
     ("owner title", re.compile(r"\bSir\b")),
-    ("backslash path", re.compile(r"[A-Za-z0-9_>]\\[A-Za-z0-9_<]")),
+    # Windows-path shape only: two or more plain segments, or a <placeholder> prefix. Regex escapes like \b or \d pass.
+    ("backslash path", re.compile(r"[A-Za-z0-9_>]\\[A-Za-z0-9_<][A-Za-z0-9_ .<>-]*\\[A-Za-z0-9_<]|<[a-z-]+>\\")),
 )
 _ISO = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?([+-]\d{2}:\d{2}|Z)"
 ISO_RE = re.compile("^" + _ISO + "$")

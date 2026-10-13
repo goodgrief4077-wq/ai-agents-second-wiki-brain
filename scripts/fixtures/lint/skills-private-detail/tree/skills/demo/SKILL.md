@@ -1,4 +1,4 @@
 ---
 name: demo
 ---
-Open the file at C:\Users\someone\notes and mail me at a@b.example.
+Open <notes-vault>\Daily and C:\Users\x here.
